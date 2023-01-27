@@ -1,0 +1,49 @@
+﻿@model List<Supplier>
+@{
+    ViewData["Title"] = "Suppliers";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cat index</title>
+    <form asp-controller="Supplier" asp-action="Index" method="get">
+        <p>
+            Title: <input type="text" name="searchStr" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+    <a asp-action="Create" class="btn btn-info">Create</a>
+</head>
+<body>
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-hower">
+                <thead>
+                    <tr>
+                        <th>SupplierId</th>
+                        <th>CompanyName</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sup in Model)
+                    {
+                        <tr>
+                            <td>@sup.SupplierId</td>
+                            <td>@sup.CompanyName</td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@sup.SupplierId" class="btn btn-danger">Delete</a>
+                                <a asp-action="Edit" asp-route-id="@sup.SupplierId" class="btn btn-warning">Update</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<body>
+</body>
+</html>
